@@ -1,0 +1,33 @@
+# -*- coding: utf-8 -*-
+# @Time    : 2020-06-01 13:56
+# @Author  : leocll
+# @Email   : leocll@qq.com
+# @File    : build_hook.py
+
+import typing
+from .data import BuildData
+
+# build data将开始解析时
+def hook_data(data: BuildData): ...
+# 已解析出项目中excludes项时
+def hook_excludes(target: typing.List[str], data: BuildData) -> typing.List[str]: ...
+# 已解析出项目中ignores项时
+def hook_ignores(target: typing.List[str], data: BuildData) -> typing.List[str]: ...
+# 已解析出项目中的包路径项时
+def hook_build_lib_path(target: typing.List[str], data: BuildData) -> typing.List[str]: ...
+# 已解析出项目中的资源文件时
+def hook_build_data(target: typing.List[typing.Tuple[str, str]],
+                    data: BuildData) -> typing.List[typing.Tuple[str, str]]: ...
+# 已解析出项目中的隐藏导入项时
+def hook_build_imports(target: typing.List[str], data: BuildData) -> typing.List[str]: ...
+# 将开始编译时
+def hook_pre_compile(data: BuildData): ...
+# 已编译完成时
+def hook_compiled(data: BuildData): ...
+# 将开始build时
+def hook_pre_build(data: BuildData): ...
+# 已build完成时
+def hook_built(data: BuildData): ...
+
+if __name__ == '__main__':
+    pass
