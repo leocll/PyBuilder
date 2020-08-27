@@ -4,6 +4,7 @@
 # @Email   : leocll@qq.com
 # @File    : build.py
 
+import os
 import sys
 import typing
 import PyInstaller.__main__
@@ -27,7 +28,7 @@ def run(name: str, target_file: str, build_dir: str, lib_dirs: typing.List[str] 
         '--specpath=%s' % build_dir      # `.spec`文件的路径
     ]
     args.extend(['-p=%s' % d for d in lib_dirs])
-    args.extend(['--add-data=%s:%s' % (abs_p, rel_p) for abs_p, rel_p in data])
+    args.extend(['--add-data=%s%s%s' % (abs_p, os.pathsep, rel_p) for abs_p, rel_p in data])
     args.extend(['--hidden-import=%s' % p for p in imports])
     args.append('-F' if single else '-D')
     # args.append('--log-level=%s' % 'DEBUG')             # TRACE, DEBUG, INFO, WARN, ERROR (default: INFO).
