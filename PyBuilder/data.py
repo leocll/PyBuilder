@@ -86,14 +86,14 @@ class BuildData(object):
         """
         def _copy4compile(files: typing.List[str]):
             for file in files:
+                file_c = file.replace(self.config.src_dir, self.config.compile_dir)
                 if os.path.exists(file):
                     # 复制源文件到编译目录
-                    utils.copy_file(file, file.replace(self.config.src_dir, self.config.compile_dir))
+                    utils.copy_file(file, file_c)
                 elif os.path.basename(file) == '__init__.py':
                     # 防止目录不存在
-                    utils.mkdir_p(os.path.dirname(file))
+                    utils.mkdir_p(os.path.dirname(file_c))
                     # 新建`__init__.py`
-                    file_c = file.replace(self.config.src_dir, self.config.compile_dir)
                     logging.info('create new empty file: %s' % file_c)
                     with open(file_c, 'a') as _:
                         pass
