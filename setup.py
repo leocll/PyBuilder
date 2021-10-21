@@ -8,7 +8,7 @@ from setuptools import setup
 
 setup(
     name='PyBuilder-exe',           # 包名
-    version='0.1.0',                # 版本信息
+    version='0.1.1',                # 版本信息
     author='leocll',                # 作者
     author_email='leocll@qq.com',   # 邮箱
     description='Build a python program as exe.',

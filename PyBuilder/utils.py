@@ -123,19 +123,21 @@ def match(fn: str, pats: typing.List[str], pats_no: typing.List[str]) -> bool:
         return False
     return _match(pats) and not _match(pats_no)
 
-def copy_file(src: str, target: str):
+def copy(src: str, target: str):
     """
     复制文件
     :param src: 源文件
-    :param target: 目录文件
+    :param target: 目标文件
     :return:
     """
     src = os.path.abspath(src)
     target = os.path.abspath(target)
-    try:
-        shutil.copy(src, target)
-    except FileNotFoundError:
-        mkdir_p(os.path.dirname(target))
+    if not os.path.exists(src) or os.path.exists(target):
+        return
+    mkdir_p(os.path.dirname(target))
+    if os.path.isdir(src):
+        shutil.copytree(src, target)
+    else:
         shutil.copy(src, target)
 
 def mkdir_p(tree: str):

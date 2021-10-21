@@ -41,7 +41,7 @@ class _Hook(object):
         pass
 
     def start4file(self, file: str):
-        from PyBuilder import utils
+        from . import utils
         module = utils.import_module4file(file)
         self.start4module(module)
 

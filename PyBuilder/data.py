@@ -7,7 +7,7 @@
 import os
 import typing
 import logging
-from PyBuilder import utils
+from . import utils
 from .config import Config
 
 class BuildData(object):
@@ -89,7 +89,7 @@ class BuildData(object):
                 file_c = file.replace(self.config.src_dir, self.config.compile_dir)
                 if os.path.exists(file):
                     # 复制源文件到编译目录
-                    utils.copy_file(file, file_c)
+                    utils.copy(file, file_c)
                 elif os.path.basename(file) == '__init__.py':
                     # 防止目录不存在
                     utils.mkdir_p(os.path.dirname(file_c))
