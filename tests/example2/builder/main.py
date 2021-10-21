@@ -7,9 +7,10 @@
 
 if __name__ == '__main__':
     import os
-    build_dir = os.path.dirname(os.path.abspath(__file__))
-    src_dir = os.path.join(os.path.dirname(build_dir), 'src')
-    hook_file = os.path.join(build_dir, 'hook.py')
+    cur_dir = os.path.dirname(os.path.abspath(__file__))
+    build_dir = os.path.join(cur_dir, 'build')
+    src_dir = os.path.join(os.path.dirname(cur_dir), 'src')
+    hook_file = os.path.join(cur_dir, 'hook.py')
     from PyBuilder import run
     run(name='example2', src_dir=src_dir, build_dir=build_dir, hook_file=hook_file, single=True)
     pass
